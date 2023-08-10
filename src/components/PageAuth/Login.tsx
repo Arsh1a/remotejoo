@@ -14,6 +14,7 @@ import useAuthStore from "@/context/useAuthStore";
 import LoadingAnimation from "../Common/LoadingAnimation";
 import PageAuthWrapper from "./PageAuthWrapper";
 import { useRouter } from "next/router";
+import useAppMutation from "@/hooks/useAppMutation";
 
 type LoginType = {
   firstName: string;
@@ -27,15 +28,13 @@ const Login = () => {
 
   const router = useRouter();
 
-  const queryClient = useQueryClient();
-  const { error, data, isLoading, mutate } = useMutation({
+  const { error, data, isLoading, mutate } = useAppMutation({
     mutationFn: (data: LoginType) => postDataWithoutRetry("/auth/login", data),
     onSuccess: async (res) => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["auth"] });
       contextLogin();
       router.back();
     },
+    invalidateQueryKeys: ["auth"],
   });
 
   const {

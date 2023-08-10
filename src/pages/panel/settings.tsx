@@ -1,5 +1,6 @@
 import Button from "@/components/Common/Button";
 import LoadingAnimation from "@/components/Common/LoadingAnimation";
+import Metadata from "@/components/Common/Metadata";
 import TextInput from "@/components/Common/TextInput";
 import ChangePassword from "@/components/PagePanel/PagePanelSettings/ChangePassword";
 import VerifyEmail from "@/components/PagePanel/PagePanelSettings/VerifyEmail";
@@ -24,6 +25,7 @@ export default function SettingsPage() {
       background="transparent"
       className="flex flex-col md:flex-row md:items-start gap-5 "
     >
+      <Metadata title="تنظیمات" url={"panel/settings"} description="تنظیمات" />
       <VerifyEmail data={userData?.data} />
       <ChangePassword />
     </PanelCard>

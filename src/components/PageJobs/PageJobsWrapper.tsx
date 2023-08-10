@@ -10,6 +10,8 @@ import { getData } from "@/utils/api";
 import SendResumeForm from "./SendResumeForm";
 import Link from "next/link";
 import SendResumeButton from "./SendResumeButton";
+import Metadata from "../Common/Metadata";
+import { convertSpacesToHyphens, truncateString } from "@/utils/utils";
 
 interface Props {
   data: JobType & InternalJobType;
@@ -49,8 +51,21 @@ const PageJobsWrapper = ({ data }: Props) => {
     }
   }, [userData]);
 
+  const metadataURL = `/jobs/${data.slug}/${convertSpacesToHyphens(
+    data.title
+  )}`;
+  const metadataDesc = `استخدام ${data.title} در ${
+    data.company.name
+  }. ${truncateString(data.description.replace(/<\/?[^>]+(>|$)/g, ""), 80)}`;
+
   return (
     <Container className="flex flex-col lg:grid grid-cols-4 justify-between gap-y-6 gap-x-10">
+      <Metadata
+        title={`استخدام ${data.title} در ${data.company.name}`}
+        description={metadataDesc}
+        url={metadataURL}
+        image={data.company.logo}
+      />
       <JobInfo
         isLoading={isLoading}
         data={data}

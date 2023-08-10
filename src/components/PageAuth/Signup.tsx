@@ -13,6 +13,7 @@ import LoadingAnimation from "../Common/LoadingAnimation";
 import PageAuthWrapper from "./PageAuthWrapper";
 import InputError from "../Common/InputError";
 import { useRouter } from "next/router";
+import useAppMutation from "@/hooks/useAppMutation";
 
 type SignupType = {
   firstName: string;
@@ -26,16 +27,14 @@ const Signup = () => {
 
   const router = useRouter();
 
-  const queryClient = useQueryClient();
-  const { error, isLoading, mutate } = useMutation({
+  const { error, isLoading, mutate } = useAppMutation({
     mutationFn: (data: SignupType) =>
       postDataWithoutRetry("/auth/signup", data),
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["auth"] });
+    successFn: () => {
       contextLogin();
       router.back();
     },
+    invalidateQueryKeys: ["auth"],
   });
 
   const {

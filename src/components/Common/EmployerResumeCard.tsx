@@ -9,23 +9,17 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchData, postData } from "@/utils/api";
 import LoadingAnimation from "./LoadingAnimation";
 import { toast } from "react-hot-toast";
+import useAppMutation from "@/hooks/useAppMutation";
 
 interface Props {
   data: ResumeType;
 }
 
 const EmployerResumeCard = ({ data }: Props) => {
-  const queryClient = useQueryClient();
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isLoading } = useAppMutation({
     mutationFn: (passedData: { status: SentResumesStatusType }) =>
       patchData(`/resumes/${data.id}`, passedData),
-    onSuccess: (res) => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["job-resumes"] });
-    },
-    onError: (error: any) => {
-      toast.error(error.response.data.message);
-    },
+    invalidateQueryKeys: ["job-resumes"],
   });
 
   const handleResumeUpdate = (status: SentResumesStatusType) => {

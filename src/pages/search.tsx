@@ -10,6 +10,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import EmployerCTA from "@/components/PageSearch/EmployerCTA";
+import Metadata from "@/components/Common/Metadata";
 
 export default function SearchPage({
   data,
@@ -63,6 +64,13 @@ export default function SearchPage({
 
   return (
     <>
+      <Metadata
+        title="فرصت های شغلی دورکاری | موقعیت های شغلی دورکاری "
+        description={
+          "با ریموتجو، فرصت‌های شغلی دورکاری در ایران را در دستان خود داشته باش و به راحتی کار ریموت پیدا کن."
+        }
+        url={"search"}
+      />
       <div className="relative">
         <JobTopFilter
           searchText={filters.text}

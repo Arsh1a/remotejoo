@@ -6,6 +6,7 @@ import {
   convertSpacesToHyphens,
   passedDays,
   toFarsiNumber,
+  truncateString,
 } from "@/utils/utils";
 import { ButtonVariant } from "./Button";
 import Link from "next/link";
@@ -23,8 +24,6 @@ const JobCard = ({
   ...rest
 }: Props) => {
   const cardColor = tags[rest.tag].color;
-  const truncate = (string: string, limit: number) =>
-    string.length > limit ? `${string.substring(0, limit)}...` : string;
   const isPublishedInternally = rest.origin === "remotejoo";
   const tag = tags[rest.tag].label;
   const jobURL = isPublishedInternally
@@ -74,7 +73,7 @@ const JobCard = ({
             />
             <div className="flex flex-col">
               <span className="text-sm font-bold">
-                {truncate(companyName, 30)}
+                {truncateString(companyName, 30)}
               </span>
               {isPublishedInternally ? (
                 <Link
@@ -84,7 +83,7 @@ const JobCard = ({
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {truncate(rest.title, 45)}
+                  {truncateString(rest.title, 45)}
                 </Link>
               ) : (
                 <a
@@ -94,7 +93,7 @@ const JobCard = ({
                   rel="noreferrer"
                   className="font-bold word-break text-xl lg:text-2xl hover:opacity-70 transition"
                 >
-                  {truncate(rest.title, 45)}
+                  {truncateString(rest.title, 45)}
                 </a>
               )}
             </div>

@@ -1,6 +1,7 @@
 import CompanyLogo from "@/components/Common/CompanyLogo";
 import Container from "@/components/Common/Container";
 import JobCardAlternative from "@/components/Common/JobCardAlternative";
+import Metadata from "@/components/Common/Metadata";
 import PageJobsWrapper from "@/components/PageJobs/PageJobsWrapper";
 import { CompanyType, InternalJobType, JobType } from "@/types";
 import { SSRFetcher } from "@/utils/api";
@@ -15,8 +16,16 @@ export default function CompanyPage({
   companyData: CompanyType;
   companyJobsData: JobType[];
 }) {
+  const metadataURL = `/jobs/${companyData.slug}`;
+
   return (
     <Container className="flex flex-col gap-5">
+      <Metadata
+        title={`فرصت های شغلی دورکاری در ${companyData.name}`}
+        description={companyData.description ?? "این شرکت توضیحاتی ندارد."}
+        url={metadataURL}
+        image={companyData.logo}
+      />
       <section className="bg-white flex flex-col gap-10 rounded-primary p-6">
         <div className="flex gap-5">
           <CompanyLogo

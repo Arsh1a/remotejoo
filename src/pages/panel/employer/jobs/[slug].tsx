@@ -5,6 +5,7 @@ import ErrorMessage from "@/components/Common/ErrorMessage";
 import InputError from "@/components/Common/InputError";
 import ListBoxDropdown from "@/components/Common/ListBoxDropdown";
 import LoadingAnimation from "@/components/Common/LoadingAnimation";
+import Metadata from "@/components/Common/Metadata";
 import RichTextEditor from "@/components/Common/RichTextEditor";
 import SentResumeCard from "@/components/Common/SentResumeCard";
 import TextInput from "@/components/Common/TextInput";
@@ -62,6 +63,15 @@ export default function EditJobPage() {
       }`}
       isLoading={resumesData.isLoading}
     >
+      <Metadata
+        title={`رزومه های ارسال شده اگهی ${
+          loadedJobData?.title ? `"${loadedJobData.title}"` : ""
+        }`}
+        url={`panel/jobs/${router.query.slug}`}
+        description={`رزومه های ارسال شده اگهی ${
+          loadedJobData?.title ? `"${loadedJobData.title}"` : ""
+        }`}
+      />
       <div className="flex flex-col gap-5">
         {sentResumes?.length > 0 ? (
           sentResumes.map((r) => <EmployerResumeCard key={r.id} data={r} />)

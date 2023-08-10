@@ -1,5 +1,6 @@
 import Button from "@/components/Common/Button";
 import DataNotFound from "@/components/Common/DataNotFound";
+import Metadata from "@/components/Common/Metadata";
 import SentResumeCard from "@/components/Common/SentResumeCard";
 import Tabs from "@/components/Common/Tabs";
 import PanelCard from "@/components/PagePanel/PanelCard";
@@ -58,6 +59,11 @@ export default function EmployeePage() {
       isLoading={isLoading}
       background="transparent"
     >
+      <Metadata
+        title="درخواست های من"
+        url={"panel/employee"}
+        description="درخواست های من"
+      />
       <div className="flex flex-col gap-4">
         <div className="flex flex-col md:flex-row md:items-center gap-2">
           <span>مشاهده:</span>

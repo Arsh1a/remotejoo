@@ -16,6 +16,7 @@ import { CompanyType, UserType } from "@/types";
 import { useRouter } from "next/router";
 import ResumeUpload from "./ResumeUpload";
 import Link from "next/link";
+import useAppMutation from "@/hooks/useAppMutation";
 
 type CreateResumeType = {
   name: string;
@@ -41,8 +42,6 @@ const SendResumeForm = ({ jobId, setIsModalOpen }: Props) => {
   >(undefined);
   const queryClient = useQueryClient();
 
-  console.log(pdfUrl);
-
   const router = useRouter();
 
   const loadedUserQuery = useQuery({
@@ -60,19 +59,17 @@ const SendResumeForm = ({ jobId, setIsModalOpen }: Props) => {
     error: createError,
     isLoading: createIsLoading,
     mutate: createMutate,
-  } = useMutation({
+  } = useAppMutation({
     mutationFn: (data: CreateResumeType) => postData("/resumes", data),
-    onSuccess: (res) => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["auth"] });
-      toast.success(
-        "رزومه با موفقیت ارسال شد. کارفرما بعد از بررسی با شما تماس خواهد گرفت."
-      );
+    successFn: () => {
       setIsModalOpen(false);
     },
-    onError: (err: any) => {
+    successMessage:
+      "رزومه با موفقیت ارسال شد. کارفرما بعد از بررسی با شما تماس خواهد گرفت.",
+    errorFn: (err: any) => {
       setError(err.response.data.message[0]);
     },
+    invalidateQueryKeys: ["auth"],
   });
 
   const onSubmit: SubmitHandler<any> = async (
@@ -121,8 +118,6 @@ const SendResumeForm = ({ jobId, setIsModalOpen }: Props) => {
       </div>
     );
   }
-
-  console.log(loadedUserData);
 
   if (!loadedUserData?.isVerified) {
     return (

@@ -1,16 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
 import { postData } from "@/utils/api";
 import { toast } from "react-hot-toast";
+import useAppMutation from "./useAppMutation";
 
+//We may later want to instead of pushing user to go to settings and click on sending new verifcation code, we directly send verifaction code
+//Anywhere we want.
 const useSendVerificationEmail = () => {
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isLoading } = useAppMutation({
     mutationFn: () => postData("/auth/new-verification-token", {}),
-    onSuccess: () => {
-      toast.success("ایمیل تأیید حساب کاربری به ایمیل شما ارسال شد.");
-    },
-    onError: (error: any) => {
-      toast.error(error.response.data.message);
-    },
+    successMessage: "ایمیل تأیید حساب کاربری به ایمیل شما ارسال شد.",
   });
 
   return { mutate, isLoading };

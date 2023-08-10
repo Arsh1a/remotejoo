@@ -3,11 +3,13 @@ import ErrorMessage from "@/components/Common/ErrorMessage";
 import InputError from "@/components/Common/InputError";
 import ListBoxDropdown from "@/components/Common/ListBoxDropdown";
 import LoadingAnimation from "@/components/Common/LoadingAnimation";
+import Metadata from "@/components/Common/Metadata";
 import RichTextEditor from "@/components/Common/RichTextEditor";
 import TextInput from "@/components/Common/TextInput";
 import JobForm from "@/components/PagePanel/PagePanelEmployer/JobForm";
 import PanelCard from "@/components/PagePanel/PanelCard";
 import { tags } from "@/constants/ui.constants";
+import useAppMutation from "@/hooks/useAppMutation";
 import { InternalJobType, JobType, TagType } from "@/types";
 import { getData, patchData, postData } from "@/utils/api";
 import { removeEmptyFields, toFarsiNumber } from "@/utils/utils";
@@ -50,17 +52,15 @@ export default function EditJobPage() {
   });
 
   const queryClient = useQueryClient();
-  const { error, isLoading, mutate } = useMutation({
+  const { error, isLoading, mutate } = useAppMutation({
     mutationFn: (data: CreateJobType) =>
       patchData(`/jobs/${loadedJobData?.slug}`, data),
-    onSuccess: (res) => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["my-jobs"] });
-      toast.success(
-        "آگهی با موفقیت ویرایش شد. پس از بررسی, تغییرا اعمال خواهد شد."
-      );
+    successFn: () => {
       router.push("/panel/employer");
     },
+    successMessage:
+      "آگهی با موفقیت ویرایش شد. پس از بررسی, تغییرا اعمال خواهد شد.",
+    invalidateQueryKeys: ["my-jobs"],
   });
 
   useEffect(() => {
@@ -106,6 +106,13 @@ export default function EditJobPage() {
       }`}
       isLoading={loadedJobQuery.isLoading}
     >
+      <Metadata
+        title={`ویرایش آگهی ${
+          loadedJobData?.title ? `"${loadedJobData.title}"` : ""
+        }`}
+        url={`panel/create/${router.query.slug}`}
+        description={"ویرایش آگهی"}
+      />
       {loadedJobData?.status === "PUBLISHED" && (
         <span className="text-sm text-red-500 flex items-start gap-1 mb-4">
           <FiAlertCircle size={20} />

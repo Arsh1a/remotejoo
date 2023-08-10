@@ -1,5 +1,6 @@
 import { authDropDownLinks } from "@/constants/links.constants";
 import useAuthStore from "@/context/useAuthStore";
+import useAppMutation from "@/hooks/useAppMutation";
 import { UserType } from "@/types";
 import { postData, postDataWithoutRetry } from "@/utils/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -20,14 +21,13 @@ const AuthDropDown = ({ data }: Props) => {
 
   const contextReset = useAuthStore((state) => state.contextReset);
 
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
+  const { mutate, isLoading } = useAppMutation({
     mutationFn: (data) => postData("/auth/logout", {}),
-    onSuccess: (res) => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["auth"] });
+    successFn: () => {
       contextReset();
     },
+    successMessage: "از حساب کاربری خود خارج شدید.",
+    invalidateQueryKeys: ["auth"],
   });
 
   return (

@@ -50,7 +50,7 @@ const Layout = ({ children }: Props) => {
       {router.pathname.includes("/panel") ? (
         <PanelLayout>{children}</PanelLayout>
       ) : (
-        <div>{children}</div>
+        <div className="relative z-10">{children}</div>
       )}
       {!router.pathname.includes("/auth") && <Footer />}
     </div>

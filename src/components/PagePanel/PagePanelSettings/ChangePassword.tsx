@@ -7,6 +7,7 @@ import { patchData, postData } from "@/utils/api";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import Button from "@/components/Common/Button";
+import useAppMutation from "@/hooks/useAppMutation";
 
 interface Props {}
 
@@ -16,16 +17,13 @@ type ChangePasswordType = {
 };
 
 const ChangePassword = ({}: Props) => {
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isLoading } = useAppMutation({
     mutationFn: (data: ChangePasswordType) =>
       patchData("/auth/change-password", data),
-    onSuccess: () => {
-      toast.success("رمز عبور با موفقیت تغییر کرد.");
+    successFn: () => {
       reset();
     },
-    onError: (error: any) => {
-      toast.error(error.response.data.message);
-    },
+    successMessage: "رمز عبور با موفقیت تغییر کرد.",
   });
 
   const {

@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+User-agent: *
+Disallow: /terms
+Disallow: /maintenance
+Disallow: /404
+Disallow: /resume/
+Disallow: /panel/
+Disallow: /auth/forgot-password
+Disallow: /auth/verify/
+
+# Host
+Host: https://remotejoo.ir
+
+# Sitemaps
+Sitemap: https://remotejoo.ir/sitemap.xml

@@ -50,7 +50,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className={`${yekan.variable}`}>
         <Layout>
           <Toaster
-            position="bottom-left"
+            position="top-center"
             reverseOrder={false}
             toastOptions={{
               duration: 7000,

@@ -15,6 +15,8 @@ import toast from "react-hot-toast";
 import { CompanyType, UserType } from "@/types";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import useAppMutation from "@/hooks/useAppMutation";
+import Metadata from "@/components/Common/Metadata";
 
 type CreateCompanyType = {
   name: string;
@@ -56,28 +58,26 @@ export default function CreateCompanyPage() {
     error: createError,
     isLoading: createIsLoading,
     mutate: createMutate,
-  } = useMutation({
+  } = useAppMutation({
     mutationFn: (data: CreateCompanyType) => postData("/companies", data),
-    onSuccess: async (res) => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["my-company"] });
+    successFn: async () => {
       await router.push("/panel/employer");
-      toast.success("شرکت با موفقیت ایجاد شد.");
     },
+    successMessage: "شرکت با موفقیت ایجاد شد.",
+    invalidateQueryKeys: ["my-company"],
   });
   const {
     error: updateError,
     isLoading: updateIsLoading,
     mutate: updateMutate,
-  } = useMutation({
+  } = useAppMutation({
     mutationFn: (data: CreateCompanyType) =>
       patchData(`/companies/${loadedCompanyData?.id}`, data),
-    onSuccess: async (res) => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["my-company", "my-jobs"] });
+    successFn: async () => {
       await router.push("/panel/employer");
-      toast.success("شرکت با موفقیت ویرایش شد.");
     },
+    invalidateQueryKeys: ["my-company", "my-jobs"],
+    successMessage: "شرکت با موفقیت ویرایش شد.",
   });
 
   const onSubmit: SubmitHandler<any> = async (
@@ -117,6 +117,11 @@ export default function CreateCompanyPage() {
       title="پروفایل شرکت"
       userIsVerified={userData?.data.isVerified}
     >
+      <Metadata
+        title="پروفایل شرکت"
+        url={"panel/employer/company"}
+        description={"پروفایل شرکت"}
+      />
       <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-1">
           <label htmlFor="name">
@@ -220,9 +225,11 @@ export default function CreateCompanyPage() {
           )}
         </div>
         <div className="flex justify-end gap-2">
-          <Link href={`/company/${loadedCompanyData?.slug}`}>
-            <Button variant="black">مشاهده پروفایل شرکت</Button>
-          </Link>
+          {loadedCompanyData && (
+            <Link href={`/company/${loadedCompanyData?.slug}`}>
+              <Button variant="black">مشاهده پروفایل شرکت</Button>
+            </Link>
+          )}
           <Button
             disabled={isLogoUriLoading}
             type="submit"

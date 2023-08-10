@@ -23,7 +23,7 @@ const Navbar = ({ data }: Props) => {
       }`}
     >
       <Container className="flex">
-        <nav className="flex gap-4 flex-col sm:flex-row justify-between items-center bg-base-100 z-10 bg-transparent w-full">
+        <nav className="flex gap-4 flex-col sm:flex-row justify-between z-[11] relative items-center bg-base-100 z-10 bg-transparent w-full">
           <div className="flex gap-10 items-center font-semibold">
             <Link href="/" className="hover:opacity-70 transition">
               <Logo />

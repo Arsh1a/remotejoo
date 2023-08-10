@@ -42,8 +42,12 @@ export const footerLinks = [
     url: "/terms",
   },
   {
-    label: "پنل کاربری",
-    url: "/panel",
+    label: "ورود",
+    url: "/auth/login",
+  },
+  {
+    label: "عضویت",
+    url: "/auth/signup",
   },
   {
     label: "تماس با ما",

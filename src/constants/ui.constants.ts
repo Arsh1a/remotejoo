@@ -54,7 +54,7 @@ export const sentResumeStatusLabels = {
 
 export const jobStatusLabels = {
   PENDING_PAYMENT: { label: "در انتظار پرداخت" },
-  PENDING_APPROVAL: { label: "در انتظار تایید" },
+  PENDING_APPROVAL: { label: "در انتظار تأیید" },
   PUBLISHED: { label: "منتشر شده" },
   EXPIRED: { label: "منقضی شده" },
 };

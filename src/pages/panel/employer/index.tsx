@@ -1,5 +1,6 @@
 import Button from "@/components/Common/Button";
 import DataNotFound from "@/components/Common/DataNotFound";
+import Metadata from "@/components/Common/Metadata";
 import Tabs from "@/components/Common/Tabs";
 import JobCardWithOptions from "@/components/PagePanel/PagePanelEmployer/JobCardWithOptions";
 import PanelCard from "@/components/PagePanel/PanelCard";
@@ -41,6 +42,11 @@ export default function EmployerPage() {
       background="transparent"
       isLoading={isLoading}
     >
+      <Metadata
+        title="آگهی های ایجاد شده"
+        url={"panel/employer"}
+        description={"آگهی های ایجاد شده"}
+      />
       <div className="flex flex-col gap-4">
         <div className="flex flex-col md:flex-row md:items-center gap-2">
           <span>مشاهده:</span>

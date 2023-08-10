@@ -3,11 +3,13 @@ import ErrorMessage from "@/components/Common/ErrorMessage";
 import InputError from "@/components/Common/InputError";
 import ListBoxDropdown from "@/components/Common/ListBoxDropdown";
 import LoadingAnimation from "@/components/Common/LoadingAnimation";
+import Metadata from "@/components/Common/Metadata";
 import RichTextEditor from "@/components/Common/RichTextEditor";
 import TextInput from "@/components/Common/TextInput";
 import JobForm from "@/components/PagePanel/PagePanelEmployer/JobForm";
 import PanelCard from "@/components/PagePanel/PanelCard";
 import { tags } from "@/constants/ui.constants";
+import useAppMutation from "@/hooks/useAppMutation";
 import { TagType, UserType } from "@/types";
 import { getData, postData } from "@/utils/api";
 import { removeEmptyFields, toFarsiNumber } from "@/utils/utils";
@@ -51,19 +53,17 @@ export default function CreateJobPage() {
     },
   });
 
-  const queryClient = useQueryClient();
   const {
     error,
     isLoading: mutationLoading,
     mutate,
-  } = useMutation({
+  } = useAppMutation({
     mutationFn: (data: CreateJobType) => postData("/jobs", data),
-    onSuccess: async (res) => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["my-jobs"] });
+    successFn: async () => {
       await router.push("/panel/employer");
-      toast.success("آگهی با موفقیت ایجاد شد.");
     },
+    invalidateQueryKeys: ["my-jobs"],
+    successMessage: "آگهی با موفقیت ایجاد شد.",
   });
 
   const onSubmit: SubmitHandler<any> = async (
@@ -88,6 +88,11 @@ export default function CreateJobPage() {
       isLoading={queryLoading}
       userIsVerified={userData?.data.isVerified}
     >
+      <Metadata
+        title="ایجاد آگهی"
+        url={"panel/employer/create"}
+        description={"ایجاد آگهی"}
+      />
       {userHasCompany ? (
         <JobForm
           handleSubmit={handleSubmit}
