@@ -1,4 +1,4 @@
-export const tags = {
+export const categories = {
   fullstack: {
     label: "فول استک",
     color: "#E3DAFB",

@@ -8,9 +8,9 @@ import RichTextEditor from "@/components/Common/RichTextEditor";
 import TextInput from "@/components/Common/TextInput";
 import JobForm from "@/components/PagePanel/PagePanelEmployer/JobForm";
 import PanelCard from "@/components/PagePanel/PanelCard";
-import { tags } from "@/constants/ui.constants";
+import { categories } from "@/constants/ui.constants";
 import useAppMutation from "@/hooks/useAppMutation";
-import { InternalJobType, JobType, TagType } from "@/types";
+import { InternalJobType, JobType, CategoryType } from "@/types";
 import { getData, patchData, postData } from "@/utils/api";
 import { removeEmptyFields, toFarsiNumber } from "@/utils/utils";
 import { wordifyfa } from "@/utils/wordifyfa";
@@ -25,13 +25,13 @@ import { FiAlertCircle, FiAlertTriangle } from "react-icons/fi";
 
 type CreateJobType = {
   title: string;
-  tag: TagType;
+  category: CategoryType;
   salary?: string | number;
   description: string;
 };
 
 export default function EditJobPage() {
-  const [selectedTag, setSelectedTag] = useState<null | string>(null);
+  const [selectedCategory, setSelectedCategory] = useState<null | string>(null);
   const [loadedJobData, setLoadedJobData] = useState<
     (JobType & InternalJobType) | null
   >(null);
@@ -65,7 +65,7 @@ export default function EditJobPage() {
 
   useEffect(() => {
     if (loadedJobData) {
-      setSelectedTag(loadedJobData.tag);
+      setSelectedCategory(loadedJobData.category);
     }
   }, [loadedJobData]);
 
@@ -128,10 +128,10 @@ export default function EditJobPage() {
         error={error}
         register={register}
         control={control}
-        selectedTag={selectedTag}
-        setSelectedTag={setSelectedTag}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
         isLoading={isLoading}
-        loadedRTEContent={loadedJobData?.description}
+        loadedJobData={loadedJobData}
       />
     </PanelCard>
   );

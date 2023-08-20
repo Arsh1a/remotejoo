@@ -5,7 +5,7 @@ import HomeHero from "@/components/PageHome/HomeHero";
 import LatestJobs from "@/components/PageHome/LatestJobs";
 import { JobFetchType } from "@/types";
 import { SSRFetcher } from "@/utils/api";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 
 export default function HomePage({ data }: { data: JobFetchType }) {
@@ -24,7 +24,7 @@ export default function HomePage({ data }: { data: JobFetchType }) {
     </>
   );
 }
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const response = await SSRFetcher(`/jobs?limit=12`);
   return {
     props: { data: response ?? [] },

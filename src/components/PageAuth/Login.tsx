@@ -53,6 +53,7 @@ const Login = () => {
 
   return (
     <PageAuthWrapper>
+      <p className="text-center">ورود</p>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-1">
           <label htmlFor="email">ایمیل</label>
@@ -106,13 +107,8 @@ const Login = () => {
         >
           رمز عبور خود را فراموش کرده‌اید؟
         </Link>
-        <Button>ورود</Button>
+        <Button isLoading={isLoading}>ورود</Button>
         <ErrorMessage error={error} />
-        {isLoading && (
-          <div className="flex justify-center items-center">
-            <LoadingAnimation />
-          </div>
-        )}
       </form>
     </PageAuthWrapper>
   );

@@ -3,10 +3,15 @@ import ErrorMessage from "@/components/Common/ErrorMessage";
 import InputError from "@/components/Common/InputError";
 import ListBoxDropdown from "@/components/Common/ListBoxDropdown";
 import LoadingAnimation from "@/components/Common/LoadingAnimation";
+import Modal from "@/components/Common/Modal";
 import RichTextEditor from "@/components/Common/RichTextEditor";
 import TextInput from "@/components/Common/TextInput";
-import { tags } from "@/constants/ui.constants";
-import React, { Dispatch, SetStateAction } from "react";
+import { categories } from "@/constants/ui.constants";
+import useAppMutation from "@/hooks/useAppMutation";
+import { InternalJobType, JobType } from "@/types";
+import { patchData } from "@/utils/api";
+import { useRouter } from "next/router";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import {
   Control,
   Controller,
@@ -24,14 +29,14 @@ interface Props {
   fieldErrors: FieldErrors<FieldValues>;
   register: UseFormRegister<FieldValues>;
   control: Control<FieldValues, any>;
-  selectedTag: string | null;
-  setSelectedTag: Dispatch<SetStateAction<string | null>>;
+  selectedCategory: string | null;
+  setSelectedCategory: Dispatch<SetStateAction<string | null>>;
   isLoading: boolean;
-  loadedRTEContent?: string;
+  loadedJobData?: (JobType & InternalJobType) | null;
   error: unknown | string;
 }
 
-const tagDropDownData = Object.entries(tags).map(([key, value]) => ({
+const categoryDropDownData = Object.entries(categories).map(([key, value]) => ({
   label: value.label,
   value: key,
 }));
@@ -42,14 +47,52 @@ const JobForm = ({
   fieldErrors,
   register,
   control,
-  selectedTag,
-  setSelectedTag,
+  selectedCategory,
+  setSelectedCategory,
   isLoading,
-  loadedRTEContent,
+  loadedJobData,
   error,
 }: Props) => {
+  const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
+
+  const router = useRouter();
+
+  const { mutate, isLoading: mutationIsLoading } = useAppMutation({
+    mutationFn: () => patchData(`/jobs/expire/${loadedJobData?.slug}`, {}),
+    invalidateQueryKeys: ["job-resumes"],
+    successFn: () => {
+      router.push("/panel/employer");
+    },
+    successMessage: "آگهی با موفقیت حذف شد.",
+  });
+
   return (
     <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
+      <Modal
+        title="حذف آگهی"
+        content={
+          <div className="flex flex-col gap-2 items-center">
+            <span>آیا با حذف این آگهی موافقید؟</span>
+            <span className="font-bold text-red-500">
+              بعد از حذف آگهی، امکان بازگرداندن وجود ندارد.
+            </span>
+            <div className="flex gap-5">
+              <Button
+                onClick={() => {
+                  setIsRemoveModalOpen(false);
+                }}
+              >
+                انصراف
+              </Button>
+              <Button variant="red" onClick={() => mutate()}>
+                حذف آگهی
+              </Button>
+            </div>
+          </div>
+        }
+        isOpen={isRemoveModalOpen}
+        setIsOpen={setIsRemoveModalOpen}
+      />
       <div className="flex flex-col gap-1">
         <label htmlFor="title">
           عنوان آگهی<span className="text-red-500">*</span>
@@ -76,27 +119,27 @@ const JobForm = ({
       </div>
       <div className="flex w-full flex-col md:flex-row gap-8">
         <div className="flex flex-col flex-1 gap-1">
-          <label htmlFor="tag">
+          <label htmlFor="category">
             دسته‌بندی<span className="text-red-500">*</span>
           </label>
           <Controller
             control={control}
             defaultValue={null}
-            name="tag"
+            name="category"
             rules={{ required: true }}
             render={({ field: { onChange } }) => (
               <ListBoxDropdown
-                value={selectedTag}
-                data={tagDropDownData}
-                error={"tag" in fieldErrors}
+                value={selectedCategory}
+                data={categoryDropDownData}
+                error={"category" in fieldErrors}
                 onChange={(e: SetStateAction<string | null>) => {
                   onChange(e);
-                  setSelectedTag(e);
+                  setSelectedCategory(e);
                 }}
               />
             )}
           />
-          {fieldErrors.tag?.type === "required" && (
+          {fieldErrors.category?.type === "required" && (
             <InputError message={"لطفا دسته‌بندی را انتخاب کنید."} />
           )}
         </div>
@@ -133,7 +176,7 @@ const JobForm = ({
           defaultValue={null}
           render={({ field }) => (
             <RichTextEditor
-              loadedContent={loadedRTEContent ?? field.value}
+              loadedContent={loadedJobData?.description ?? field.value}
               onChange={field.onChange}
               error={"description" in fieldErrors}
             />
@@ -156,21 +199,26 @@ const JobForm = ({
         )}
       </div>
       <div className="flex">
+        {loadedJobData && (
+          <Button
+            variant="red"
+            onClick={() => setIsRemoveModalOpen(true)}
+            type="button"
+          >
+            حذف آگهی
+          </Button>
+        )}
         <Button
+          isLoading={isLoading}
           type="submit"
           className="mr-auto flex items-center gap-2"
           variant="primary"
         >
-          ایجاد آگهی و انتشار
+          ثبت آگهی
           <FaArrowLeft />
         </Button>
       </div>
       <ErrorMessage error={error} />
-      {isLoading && (
-        <div className="flex justify-center items-center">
-          <LoadingAnimation />
-        </div>
-      )}
     </form>
   );
 };

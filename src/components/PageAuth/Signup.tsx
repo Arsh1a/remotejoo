@@ -27,21 +27,24 @@ const Signup = () => {
 
   const router = useRouter();
 
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    getValues,
+  } = useForm<SignupType>();
+
   const { error, isLoading, mutate } = useAppMutation({
     mutationFn: (data: SignupType) =>
       postDataWithoutRetry("/auth/signup", data),
     successFn: () => {
       contextLogin();
-      router.back();
     },
+    successMessage: `ایمیل تأیید حساب کاربری به ${getValues(
+      "email"
+    )} ارسال شد.`,
     invalidateQueryKeys: ["auth"],
   });
-
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<SignupType>();
 
   const onSubmit: SubmitHandler<SignupType> = async (
     data: SignupType,
@@ -53,6 +56,7 @@ const Signup = () => {
 
   return (
     <PageAuthWrapper>
+      <p className="text-center">عضویت</p>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col">
           <label htmlFor="first-name">نام</label>
@@ -133,13 +137,10 @@ const Signup = () => {
             />
           )}
         </div>
-        <Button className="mt-4">ثبت نام</Button>
+        <Button isLoading={isLoading} className="mt-4">
+          ثبت نام
+        </Button>
         <ErrorMessage error={error} />
-        {isLoading && (
-          <div className="flex justify-center items-center">
-            <LoadingAnimation />
-          </div>
-        )}
       </form>
     </PageAuthWrapper>
   );

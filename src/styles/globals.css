@@ -13,6 +13,7 @@
 html,
 body {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .tiptap_output > * {
@@ -54,4 +55,33 @@ input[type="number"] {
 
 .word-break {
   word-break: break-word;
+}
+
+.hero-bg {
+  background-color: hsla(27, 28%, 47%, 1);
+  background-image: radial-gradient(
+      at 50% 3%,
+      hsla(159, 29%, 47%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 80% 0%, hsla(159, 29%, 47%, 1) 0px, transparent 50%),
+    radial-gradient(at 12% 53%, hsla(18, 98%, 63%, 1) 0px, transparent 50%),
+    radial-gradient(at 78% 47%, hsla(10, 76%, 60%, 1) 0px, transparent 50%),
+    radial-gradient(at 27% 0%, hsla(194, 29%, 33%, 1) 0px, transparent 50%),
+    radial-gradient(at 88% 97%, hsla(159, 29%, 47%, 1) 0px, transparent 50%),
+    radial-gradient(at 3% 0%, hsla(159, 29%, 47%, 1) 0px, transparent 50%);
+  background-size: 300% 300%;
+  animation: hero-animation 12s ease-in-out infinite;
+}
+
+@keyframes hero-animation {
+  0% {
+    background-position: 10% 0%;
+  }
+  50% {
+    background-position: 91% 100%;
+  }
+  100% {
+    background-position: 10% 0%;
+  }
 }

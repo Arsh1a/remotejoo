@@ -1,4 +1,4 @@
-import { origins, tags } from "@/constants/ui.constants";
+import { origins, categories } from "@/constants/ui.constants";
 import { JobType } from "@/types";
 import React from "react";
 import Button from "./Button";
@@ -23,9 +23,9 @@ const JobCard = ({
   aditionalContent,
   ...rest
 }: Props) => {
-  const cardColor = tags[rest.tag].color;
+  const cardColor = categories[rest.category].color;
   const isPublishedInternally = rest.origin === "remotejoo";
-  const tag = tags[rest.tag].label;
+  const category = categories[rest.category].label;
   const jobURL = isPublishedInternally
     ? `/jobs/${rest.slug}/${convertSpacesToHyphens(rest.title)}`
     : "";
@@ -100,7 +100,7 @@ const JobCard = ({
           </div>
           <div className="mt-auto">
             <div className="rounded-full py-1 px-4 border border-black text-black">
-              <span className="text-sm font-bold">{tag}</span>
+              <span className="text-sm font-bold">{category}</span>
             </div>
           </div>
         </div>

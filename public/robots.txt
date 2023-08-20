@@ -1,14 +1,14 @@
 User-agent: *
 Allow: /
+Allow: *.js
+Allow: *.css
 
-User-agent: *
 Disallow: /terms
 Disallow: /maintenance
 Disallow: /404
 Disallow: /resume/
 Disallow: /panel/
-Disallow: /auth/forgot-password
-Disallow: /auth/verify/
+Disallow: /auth/
 
 # Host
 Host: https://remotejoo.ir

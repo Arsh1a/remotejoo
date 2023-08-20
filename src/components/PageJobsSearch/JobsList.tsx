@@ -15,7 +15,7 @@ const JobsList = ({ data, currentPage, handleFilterChange }: Props) => {
   return (
     <div className="w-full flex flex-col">
       <div className="flex flex-col gap-4">
-        {data.jobs.length > 0 ? (
+        {data?.jobs.length > 0 ? (
           <>
             <div className="flex flex-col gap-3 lg:gap-6">
               {data.jobs.map((job, i) => (
@@ -27,7 +27,7 @@ const JobsList = ({ data, currentPage, handleFilterChange }: Props) => {
           <DataNotFound />
         )}
       </div>
-      {data.jobs.length > 0 && (
+      {data?.jobs.length > 0 && (
         <JobsPagination
           currentPage={currentPage}
           handleFilterChange={handleFilterChange}

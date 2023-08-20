@@ -9,7 +9,7 @@ interface Props {
 const JobsCount = ({ data }: Props) => {
   return (
     <>
-      {data.jobs.length > 0 && (
+      {data?.jobs.length > 0 && (
         <div className="flex justify-between">
           <span>
             {toFarsiNumber(data.totalJobs)} فرصت شغلی دورکاری یافت شد.

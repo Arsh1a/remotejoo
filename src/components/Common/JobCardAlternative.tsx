@@ -1,4 +1,4 @@
-import { origins, tags } from "@/constants/ui.constants";
+import { origins, categories } from "@/constants/ui.constants";
 import { JobType } from "@/types";
 import {
   convertSpacesToHyphens,
@@ -21,9 +21,9 @@ const JobCardAlternative = ({
   aditionalContent,
   ...rest
 }: Props) => {
-  const cardColor = tags[rest.tag].color;
+  const cardColor = categories[rest.category].color;
   const isPublishedInternally = rest.origin === "remotejoo";
-  const tag = tags[rest.tag].label;
+  const category = categories[rest.category].label;
   const jobURL = isPublishedInternally
     ? `/jobs/${rest.slug}/${convertSpacesToHyphens(rest.title)}`
     : "";
@@ -81,7 +81,7 @@ const JobCardAlternative = ({
             )}
             <div className="flex items-center gap-4 flex-wrap">
               <div className="rounded-full px-2 border self-start border-neutral-500 text-neutral-500">
-                <span className="text-sm">{tag}</span>
+                <span className="text-sm">{category}</span>
               </div>
               {rest.salary ? (
                 <span className="text-sm">
@@ -91,7 +91,7 @@ const JobCardAlternative = ({
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between gap-2 relative mt-7">
+        <div className="flex flex-col justify-between gap-2 relative mt-5">
           <div className="mr-auto mt-auto flex flex-col items-end gap-2">
             {isPublishedInternally ? (
               <Link href={jobURL} target="_blank" rel="noreferrer">

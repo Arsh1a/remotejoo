@@ -13,11 +13,7 @@ interface Props {
 }
 
 const AuthDropDown = ({ data }: Props) => {
-  const [isLinkClicked, setIsLinkClicked] = useState(false);
-
-  useEffect(() => {
-    if (isLinkClicked) setIsLinkClicked(false);
-  }, [isLinkClicked]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const contextReset = useAuthStore((state) => state.contextReset);
 
@@ -32,23 +28,27 @@ const AuthDropDown = ({ data }: Props) => {
 
   return (
     <div className="group relative">
-      <Link
-        href="/panel"
-        className="font-semibold gap-1 flex items-center justify-center hover:opacity-70 transition"
+      <div
+        className="font-semibold cursor-pointer gap-1 flex items-center justify-center hover:opacity-70 transition"
+        onClick={() => setIsOpen(!isOpen)}
       >
         <MdPerson size={24} />
-        {data?.firstName} {data?.lastName}
-      </Link>
+        <span className="truncate max-w-[110px]">
+          {data?.firstName} {data?.lastName}
+        </span>
+      </div>
       <ul
-        className={`absolute z-50 hidden left-0 group-hover:flex flex-col gap-2 bg-white text-black min-w-[10rem] p-4 rounded-secondary${
-          isLinkClicked ? " !hidden" : ""
+        className={`absolute z-50 left-0 flex-col gap-2 bg-white text-black min-w-[10rem] p-4 rounded-secondary${
+          isOpen ? " flex" : " hidden"
         }`}
       >
         {authDropDownLinks.map((l) => (
           <li
             key={l.url}
             className="w-full"
-            onClick={() => setIsLinkClicked(true)}
+            onClick={(e) => {
+              setIsOpen(false);
+            }}
           >
             <Link
               onClick={() => {

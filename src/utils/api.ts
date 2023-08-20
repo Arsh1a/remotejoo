@@ -77,6 +77,7 @@ export const postDataWithoutRetry = async (url: string, data: any) => {
 
 export const filterObjectToQueryString = (obj: any) => {
   let queryString = "";
+
   for (const key in obj) {
     if (
       obj[key] !== undefined &&

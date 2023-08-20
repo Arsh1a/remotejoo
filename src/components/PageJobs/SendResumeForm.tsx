@@ -34,8 +34,7 @@ interface Props {
 const SendResumeForm = ({ jobId, setIsModalOpen }: Props) => {
   const [pdfUrl, setPdfUrl] = useState("");
   const [loadedUserData, setLoadedUserData] = useState<UserType | null>(null);
-  const [isLogoUriLoading, setIsLogoUriLoading] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isPdfUriLoading, setIsPdfUriLoading] = useState(false);
   const [error, setError] = useState("");
   const [resumeFieldEmptyError, setResumeFieldEmptyError] = useState<
     boolean | undefined
@@ -188,7 +187,7 @@ const SendResumeForm = ({ jobId, setIsModalOpen }: Props) => {
           passFileFn={setPdfUrl}
           passFile={pdfUrl}
           error={"file" in errors}
-          passLoadingFn={setIsLogoUriLoading}
+          passLoadingFn={setIsPdfUriLoading}
           clearErrors={clearErrors}
           setValue={setValue}
           {...register("file", {
@@ -219,7 +218,8 @@ const SendResumeForm = ({ jobId, setIsModalOpen }: Props) => {
       </div>
       <div className="flex">
         <Button
-          disabled={isLogoUriLoading}
+          disabled={createIsLoading || isPdfUriLoading}
+          isLoading={createIsLoading}
           type="submit"
           className="mr-auto flex items-center gap-2"
           variant="primary"
@@ -228,11 +228,6 @@ const SendResumeForm = ({ jobId, setIsModalOpen }: Props) => {
         </Button>
       </div>
       <ErrorMessage error={error} />
-      {isLoading && (
-        <div className="flex justify-center items-center">
-          <LoadingAnimation />
-        </div>
-      )}
     </form>
   );
 };

@@ -31,12 +31,14 @@ const JobEmployerOptions = ({ slug, status }: JobEmployerOptionsProps) => {
   return (
     <div className="flex gap-2 mr-auto items-center justify-end">
       {jobStatusLabels[status].label}
-      <Link href={`/panel/employer/edit/${slug}`}>
-        <Button className="flex items-center gap-1" variant="black">
-          <FaEdit />
-          ویرایش
-        </Button>
-      </Link>
+      {status !== "EXPIRED" && (
+        <Link href={`/panel/employer/edit/${slug}`}>
+          <Button className="flex items-center gap-1" variant="black">
+            <FaEdit />
+            ویرایش
+          </Button>
+        </Link>
+      )}
       <Link href={`/panel/employer/jobs/${slug}`}>
         <Button className="flex items-center gap-1" variant="black">
           مشاهده رزومه ها

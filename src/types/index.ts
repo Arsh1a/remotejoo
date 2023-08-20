@@ -2,7 +2,7 @@ import {
   jobStatusLabels,
   origins,
   sentResumeStatusLabels,
-  tags,
+  categories,
 } from "@/constants/ui.constants";
 
 export type UserType = {
@@ -40,7 +40,7 @@ export type JobType = {
   updatedAt: string;
   title: string;
   passedDays: number;
-  tag: TagType;
+  category: CategoryType;
   salary?: number;
 } & (InternalJobType | ExternalJobType);
 
@@ -74,7 +74,7 @@ export type CompanyType = {
   job: JobType[];
 };
 
-export type TagType = keyof typeof tags;
+export type CategoryType = keyof typeof categories;
 
 export type OriginType = keyof typeof origins;
 export type InternalOriginType = Extract<OriginType, "remotejoo">;
@@ -84,7 +84,8 @@ export type FilterType = {
   page?: number;
   limit?: number;
   text?: string;
-  tags?: TagType[] | string;
+  categories?: CategoryType[];
+  origins?: OriginType[];
 };
 
 export type JobFetchType = {

@@ -26,7 +26,7 @@ const JobTopFilter = ({ searchText, handleFilterChange }: Props) => {
     if (handleFilterChange) {
       handleFilterChange({ text: search });
     } else {
-      router.push(`/search?text=${search}`);
+      router.push(`/jobs?text=${search}`);
     }
   };
 
@@ -36,7 +36,7 @@ const JobTopFilter = ({ searchText, handleFilterChange }: Props) => {
         <form onSubmit={(e) => handleSearch(e)} className="flex">
           <div className="flex bg-white p-1 rounded-full">
             <TextInput
-              className="focus:!outline-none !ring-0 !p-0 !px-2 min-w-[15rem] text-black !bg-transparent placeholder:text-primary placeholder:opacity-70"
+              className="focus:!outline-none !ring-0 !p-0 !px-2 min-w-[10rem] text-black !bg-transparent"
               placeholder="عنوان شغلی, مهارت یا..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}

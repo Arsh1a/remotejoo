@@ -66,8 +66,8 @@ const EmployerResumeCard = ({ data }: Props) => {
             تأیید
           </Button>
           <Button
-            variant="clean"
-            className="self-center bg-red-500 text-white flex-1 !py-1"
+            variant="red"
+            className="self-cente flex-1 !py-1"
             onClick={() => handleResumeUpdate("REJECTED")}
           >
             رد

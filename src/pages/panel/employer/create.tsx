@@ -8,9 +8,9 @@ import RichTextEditor from "@/components/Common/RichTextEditor";
 import TextInput from "@/components/Common/TextInput";
 import JobForm from "@/components/PagePanel/PagePanelEmployer/JobForm";
 import PanelCard from "@/components/PagePanel/PanelCard";
-import { tags } from "@/constants/ui.constants";
+import { categories } from "@/constants/ui.constants";
 import useAppMutation from "@/hooks/useAppMutation";
-import { TagType, UserType } from "@/types";
+import { CategoryType, UserType } from "@/types";
 import { getData, postData } from "@/utils/api";
 import { removeEmptyFields, toFarsiNumber } from "@/utils/utils";
 import { wordifyfa } from "@/utils/wordifyfa";
@@ -24,14 +24,14 @@ import { FaArrowLeft } from "react-icons/fa";
 
 type CreateJobType = {
   title: string;
-  tag: TagType;
+  category: CategoryType;
   salary?: string | number;
   description: string;
 };
 
 export default function CreateJobPage() {
   const [userHasCompany, setUserHasCompany] = useState(true);
-  const [selectedTag, setSelectedTag] = useState<null | string>(null);
+  const [selectedCategory, setSelectedCategory] = useState<null | string>(null);
 
   const router = useRouter();
 
@@ -101,8 +101,8 @@ export default function CreateJobPage() {
           error={error}
           register={register}
           control={control}
-          selectedTag={selectedTag}
-          setSelectedTag={setSelectedTag}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
           isLoading={mutationLoading}
         />
       ) : (

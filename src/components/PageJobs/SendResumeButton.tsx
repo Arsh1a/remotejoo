@@ -41,10 +41,14 @@ const SendResumeButton = ({
       ) : (
         <Button
           variant="primary"
-          disabled={isResumeAlreadySent}
+          disabled={isResumeAlreadySent || data.status === "EXPIRED"}
           onClick={() => setIsModalOpen(true)}
         >
-          {isResumeAlreadySent ? "رزومه ارسال شده است" : "ارسال رزومه"}
+          {isResumeAlreadySent
+            ? "رزومه ارسال شده است"
+            : data.status === "EXPIRED"
+            ? "آگهی منقضی شده است"
+            : "ارسال رزومه"}
         </Button>
       )}
     </>

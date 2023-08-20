@@ -11,8 +11,13 @@ import SentResumeCard from "@/components/Common/SentResumeCard";
 import TextInput from "@/components/Common/TextInput";
 import JobForm from "@/components/PagePanel/PagePanelEmployer/JobForm";
 import PanelCard from "@/components/PagePanel/PanelCard";
-import { tags } from "@/constants/ui.constants";
-import { InternalJobType, JobType, SentResumeType, TagType } from "@/types";
+import { categories } from "@/constants/ui.constants";
+import {
+  InternalJobType,
+  JobType,
+  SentResumeType,
+  CategoryType,
+} from "@/types";
 import { getData, patchData, postData } from "@/utils/api";
 import { removeEmptyFields, toFarsiNumber } from "@/utils/utils";
 import { wordifyfa } from "@/utils/wordifyfa";
@@ -27,13 +32,13 @@ import { FiAlertCircle, FiAlertTriangle } from "react-icons/fi";
 
 type CreateJobType = {
   title: string;
-  tag: TagType;
+  categort: CategoryType;
   salary?: string | number;
   description: string;
 };
 
 export default function EditJobPage() {
-  const [selectedTag, setSelectedTag] = useState<null | string>(null);
+  const [selectedCategory, setSelectedCategory] = useState<null | string>(null);
   const [loadedJobData, setLoadedJobData] = useState<
     (JobType & InternalJobType) | null
   >(null);

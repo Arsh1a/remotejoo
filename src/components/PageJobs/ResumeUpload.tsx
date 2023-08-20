@@ -84,7 +84,7 @@ const ResumeUpload = ({
     fileToDataUri(file).then((dataUri) => {
       setDataUri(dataUri as string);
     });
-    mutate({ presignedUploadUrl: "/resumes/upload-resume", file });
+    mutate({ presignedUploadUrl: "/resumes/upload-resume-s3", file });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
@@ -114,26 +114,24 @@ const ResumeUpload = ({
         }${isLoading ? " cursor-progress opacity-70" : ""}`}
         htmlFor="file"
       >
-        <span className="flex justify-center items-center gap-1">
-          {file || dataUri ? (
-            <div
-              className="flex items-center gap-1"
-              style={{ direction: "ltr" }}
-            >
-              {file?.name ? file.name : "رزومه از قبل آپلود شده"}
-            </div>
-          ) : (
-            <>
-              <GrFormUpload size={24} />
-              آپلود فایل رزومه
-            </>
-          )}
-        </span>
-        {file && (
-          <div
-            className={`h-1 right-0 bg-secondary w-full absolute bottom-0 transition-[width,opacity]`}
-            style={{ width: `${progress}%` }}
-          ></div>
+        {isLoading ? (
+          <>در حال بارگذاری</>
+        ) : (
+          <span className="flex justify-center items-center gap-1">
+            {file || dataUri ? (
+              <div
+                className="flex items-center gap-1"
+                style={{ direction: "ltr" }}
+              >
+                {file?.name ? file.name : "رزومه از قبل آپلود شده"}
+              </div>
+            ) : (
+              <>
+                <GrFormUpload size={24} />
+                آپلود فایل رزومه
+              </>
+            )}
+          </span>
         )}
       </label>
       <input
@@ -145,7 +143,7 @@ const ResumeUpload = ({
         {...rest}
         onChange={handleFileChange}
       />
-      {dataUri && (
+      {(loadedResume || passFile) && (
         <Link
           href={`/resume/${loadedResume ?? passFile}`}
           className="text-sm hover:opacity-70 transition"

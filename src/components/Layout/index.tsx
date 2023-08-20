@@ -45,7 +45,7 @@ const Layout = ({ children }: Props) => {
   }
 
   return (
-    <div className={`font-sans min-h-screen`}>
+    <div className="font-sans min-h-screen relative flex flex-col">
       {!router.pathname.includes("/auth") && <Navbar data={userData} />}
       {router.pathname.includes("/panel") ? (
         <PanelLayout>{children}</PanelLayout>

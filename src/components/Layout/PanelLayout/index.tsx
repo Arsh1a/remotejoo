@@ -19,9 +19,7 @@ const PanelLayout = ({ children }: Props) => {
   return (
     <>
       <TabLayout />
-      <Container className="flex flex-col gap-y-6">
-        <div className="w-full">{children}</div>
-      </Container>
+      <Container className="w-full">{children}</Container>
     </>
   );
 };
@@ -44,7 +42,7 @@ const TabLayout = () => {
             <li key={l.url}>
               <Link
                 href={l.url}
-                className={`hover:opacity-70 transition px-4 py-2 rounded-full -mr-3${
+                className={`hover:opacity-70 transition px-4 py-2 rounded-full -mr-2${
                   router.pathname === l.url ? " bg-secondary" : ""
                 }`}
               >

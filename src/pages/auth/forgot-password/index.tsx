@@ -1,5 +1,5 @@
 import Metadata from "@/components/Common/Metadata";
-import PageForgotPassword from "@/components/PageAuth/PageForgotPassword";
+import PageForgotPassword from "@/components/PageAuth/ForgotPassword";
 import useAuthStore from "@/context/useAuthStore";
 import useStore from "@/hooks/useStore";
 import router from "next/router";

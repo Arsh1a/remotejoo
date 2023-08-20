@@ -80,7 +80,7 @@ export default function EmployeePage() {
             text={
               <div className="flex gap-2 items-center flex-col">
                 موردی برای نمایش وجود ندارد.
-                <Link href="/search">
+                <Link href="/jobs">
                   <Button variant="primary">جستجوی مشاغل</Button>
                 </Link>
               </div>

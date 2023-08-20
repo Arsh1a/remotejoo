@@ -22,12 +22,10 @@ const PanelCard = ({
 }: Props) => {
   return (
     <>
-      {title && (
-        <h1 className="text-2xl font-bold mb-4 mx-0 lg:mx-24">{title}</h1>
-      )}
+      {title && <h1 className="text-2xl font-bold mb-4">{title}</h1>}
       {userIsVerified ? (
         <div
-          className={`min-h-[50vh] mx-0 lg:mx-24 bg-white rounded-primary p-5${
+          className={`min-h-[50vh] bg-white rounded-primary p-5${
             background === "transparent" ? " !p-0 !bg-transparent" : ""
           }${className ? ` ${className}` : ""}`}
         >
@@ -40,7 +38,7 @@ const PanelCard = ({
           )}
         </div>
       ) : (
-        <div className="mb-4 mx-0 lg:mx-24 flex flex-col items-center justify-center gap-2">
+        <div className="mb-4 flex flex-col items-center justify-center gap-2">
           <p>ابتدا حساب کاربری خود را تأیید کنید.</p>
           <Link href="/panel/settings">
             <Button>تنظیمات</Button>

@@ -81,7 +81,7 @@ const CompanyImageUpload = ({
     fileToDataUri(file).then((dataUri) => {
       setDataUri(dataUri as string);
     });
-    mutate({ presignedUploadUrl: "/companies/upload-image", file });
+    mutate({ presignedUploadUrl: "/companies/upload-image-s3", file });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
@@ -111,38 +111,36 @@ const CompanyImageUpload = ({
         }${isLoading ? " cursor-progress opacity-70" : ""}`}
         htmlFor="file"
       >
-        <span className="flex justify-center items-center gap-1">
-          {file || dataUri ? (
-            <div
-              className="flex items-center gap-1"
-              style={{ direction: "ltr" }}
-            >
-              {file?.name ? file.name : "لوگو کنونی شرکت"}
+        {isLoading ? (
+          <>در حال بارگذاری</>
+        ) : (
+          <span className="flex justify-center items-center gap-1">
+            {file || dataUri ? (
+              <div
+                className="flex items-center gap-1"
+                style={{ direction: "ltr" }}
+              >
+                {file?.name ? file.name : "لوگو کنونی شرکت"}
 
-              {dataUri && (
-                //To stop from caching image cause this is a image that changes a LOT
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={dataUri}
-                  className="rounded-full"
-                  alt="لوگو شرکت"
-                  height={40}
-                  width={40}
-                />
-              )}
-            </div>
-          ) : (
-            <>
-              <GrFormUpload size={24} />
-              آپلود فایل لوگو
-            </>
-          )}
-        </span>
-        {file && (
-          <div
-            className={`h-1 right-0 bg-secondary w-full absolute bottom-0 transition-[width,opacity]`}
-            style={{ width: `${progress}%` }}
-          ></div>
+                {dataUri && (
+                  //To stop from caching image cause this is a image that changes a LOT
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={dataUri}
+                    className="rounded-full"
+                    alt="لوگو شرکت"
+                    height={40}
+                    width={40}
+                  />
+                )}
+              </div>
+            ) : (
+              <>
+                <GrFormUpload size={24} />
+                آپلود فایل لوگو
+              </>
+            )}
+          </span>
         )}
       </label>
       <input

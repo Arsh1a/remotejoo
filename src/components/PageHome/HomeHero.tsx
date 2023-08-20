@@ -16,21 +16,21 @@ const HomeHero = ({}: Props) => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/search?text=${search}`);
+    router.push(`/jobs?text=${search}`);
   };
 
   return (
-    <main className="text-center bg-main py-20 text-white relative flex items-center justify-center">
-      <GradientBackground />
+    <main className="text-center hero-bg py-20 pt-24 text-white relative flex items-center justify-center">
+      {/* <GradientBackground /> */}
       <Container className="flex flex-col justify-center items-center text-center relative overflow-hidden">
-        <h1 className="text-5xl lg:text-7xl font-semibold">
+        <h1 className="text-3xl md:text-5xl lg:text-7xl font-semibold">
           به راحتی کار{" "}
-          <strong className="font-extrabold text-transparent text-8xl bg-clip-text bg-white">
+          <strong className="font-extrabold text-transparent text-5xl md:text-8xl bg-clip-text bg-white">
             ریموت
           </strong>{" "}
           پیدا کن!
         </h1>
-        <p className="text-2xl my-10">
+        <p className="text-xl my-5 md:my-10">
           با{" "}
           <strong className="text-transparent tracking-tight text-3xl bg-clip-text bg-main-orange">
             ریموتجو
@@ -59,13 +59,23 @@ const HomeHero = ({}: Props) => {
         <div className="flex flex-col gap-10 mt-14">
           <div className="flex flex-wrap items-center justify-around sm:justify-center gap-6 sm:gap-20 brightness-0 invert-[1]">
             <div className="h-[47.55px] w-[130px] relative">
-              <Image alt="Jobinja" src="/images/jobinja.png" fill />
+              <Image
+                alt="Jobinja"
+                sizes="130px"
+                src="/images/jobinja.png"
+                fill
+              />
             </div>
             <div className="h-[49.05px] w-[111px] relative">
               <Image alt="Jobvision" src="/images/jobvision.svg" fill />
             </div>
             <div className="h-[35px] w-[35px] relative">
-              <Image alt="E-Estekhdam" src="/images/e-estekhdam.png" fill />
+              <Image
+                alt="E-Estekhdam"
+                src="/images/e-estekhdam.png"
+                sizes="35px"
+                fill
+              />
             </div>
             <div className="h-[32px] w-[122px] relative">
               <Image alt="E-Estekhdam" src="/images/quera.svg" fill />

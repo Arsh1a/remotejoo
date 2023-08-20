@@ -48,17 +48,34 @@ const ChangePassword = ({}: Props) => {
         <TextInput
           placeholder="رمز عبور فعلی"
           type="password"
-          {...register("password")}
+          {...register("password", {
+            required: true,
+            minLength: 8,
+            maxLength: 128,
+          })}
         />
         <TextInput
           placeholder="رمز عبور جدید"
           type="password"
-          {...register("newPassword")}
+          {...register("newPassword", {
+            required: true,
+            minLength: 8,
+            maxLength: 128,
+          })}
         />
         <TextInput
           placeholder="تکرار رمز عبور جدید"
           type="password"
-          {...register("newPasswordRepeat")}
+          {...register("repeatPassword", {
+            required: true,
+            minLength: 8,
+            maxLength: 128,
+            validate: (val: string) => {
+              if (watch("newPassword") != val) {
+                return "رمز عبور با تاییدیه مطابقت ندارد.";
+              }
+            },
+          })}
         />
         <Button type="submit">تغییر رمز عبور</Button>
       </form>

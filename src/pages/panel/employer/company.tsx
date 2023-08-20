@@ -47,9 +47,11 @@ export default function CreateCompanyPage() {
     queryKey: ["my-company"],
     queryFn: () => getData<CompanyType>("/companies/user"),
     onSuccess: (res) => {
+      setIsLoading(false);
       setLoadedCompanyData(res.data);
     },
     onError: () => {
+      setIsLoading(false);
       setLoadedCompanyData(null);
     },
   });
@@ -61,7 +63,11 @@ export default function CreateCompanyPage() {
   } = useAppMutation({
     mutationFn: (data: CreateCompanyType) => postData("/companies", data),
     successFn: async () => {
+      setIsLoading(false);
       await router.push("/panel/employer");
+    },
+    onError: () => {
+      setIsLoading(false);
     },
     successMessage: "شرکت با موفقیت ایجاد شد.",
     invalidateQueryKeys: ["my-company"],
@@ -86,6 +92,7 @@ export default function CreateCompanyPage() {
   ) => {
     e!.preventDefault();
     const sanitizedData = removeEmptyFields(data);
+    setIsLoading(true);
     if (loadedCompanyData) {
       updateMutate({ ...sanitizedData, logo: logoUri });
     } else {
@@ -232,6 +239,7 @@ export default function CreateCompanyPage() {
           )}
           <Button
             disabled={isLogoUriLoading}
+            isLoading={isLoading || isLogoUriLoading}
             type="submit"
             className="flex items-center gap-2"
             variant="primary"
@@ -240,11 +248,6 @@ export default function CreateCompanyPage() {
           </Button>
         </div>
         <ErrorMessage error={error} />
-        {isLoading && (
-          <div className="flex justify-center items-center">
-            <LoadingAnimation />
-          </div>
-        )}
       </form>
     </PanelCard>
   );
