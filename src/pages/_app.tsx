@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
+import Script from "next/script";
 
 const yekan = localFont({
   src: [
@@ -47,6 +48,19 @@ const Toaster = dynamic(
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-SW8G8YRSC2"
+      ></Script>
+      <Script id="gtag">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-SW8G8YRSC2');
+        `}
+      </Script>
       <div className={`${yekan.variable}`}>
         <Layout>
           <Toaster

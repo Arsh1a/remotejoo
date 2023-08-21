@@ -47,11 +47,7 @@ const HomeHero = ({}: Props) => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <Button
-            variant="primary"
-            className="!py-2 md:!py-3 flex items-center justify-center md:gap-1"
-            type="submit"
-          >
+          <Button variant="primary" className="!py-2 md:!py-3" type="submit">
             <FiSearch size={18} />
             جستوجو
           </Button>

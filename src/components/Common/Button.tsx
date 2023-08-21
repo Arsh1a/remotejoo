@@ -41,7 +41,18 @@ const ButtonRenderer: ForwardRefRenderFunction<HTMLButtonElement, Props> = (
       }${isLoading ? " opacity-50" : ""}`}
       disabled={isLoading ?? rest.disabled}
     >
-      {isLoading ? <>در حال بارگذاری</> : children}
+      <span
+        className={`flex items-center justify-center gap-1${
+          isLoading ? " opacity-0" : ""
+        }`}
+      >
+        {children}
+      </span>
+      {isLoading && (
+        <div className="w-full h-full float-right top-0 right-0 flex items-center justify-center absolute">
+          <div className="loader"></div>
+        </div>
+      )}
     </button>
   );
 };
