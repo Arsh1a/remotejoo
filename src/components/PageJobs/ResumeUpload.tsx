@@ -22,6 +22,7 @@ import {
 } from "react-hook-form";
 import InputError from "../Common/InputError";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   passFileFn: Dispatch<SetStateAction<string>>;
@@ -59,6 +60,12 @@ const ResumeUpload = ({
     passFileFn,
     "path"
   );
+
+  useEffect(() => {
+    if (data?.data.success === false) {
+      toast.error("مشکلی در آپلود فایل بوجود آمده است.");
+    }
+  }, [data]);
 
   useEffect(() => {
     passLoadingFn(isLoading);

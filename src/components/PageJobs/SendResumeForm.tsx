@@ -90,6 +90,8 @@ const SendResumeForm = ({ jobId, setIsModalOpen }: Props) => {
     setResumeFieldEmptyError(false);
   }, [pdfUrl]);
 
+  console.log(pdfUrl);
+
   const {
     register,
     reset,

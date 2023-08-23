@@ -12,7 +12,7 @@ interface Props {
 }
 
 const PageAuthWrapper = ({ children }: Props) => {
-  useAuthRedirect(true);
+  useAuthRedirect(true, "/");
 
   return (
     <div className="relative">

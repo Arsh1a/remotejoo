@@ -14,7 +14,7 @@ interface Props {
 }
 
 const PanelLayout = ({ children }: Props) => {
-  useAuthRedirect(false);
+  useAuthRedirect(false, "/auth/login");
 
   return (
     <>
