@@ -22,7 +22,7 @@ export default function ResumePage() {
     <div className="w-screen h-screen">
       <iframe
         className="w-full h-full"
-        src={`https://c487261.parspack.net/c487261/${router.query.file_name}`}
+        src={`${process.env.NEXT_PUBLIC_ASSETS_URI}/resumes/${router.query.file_name}`}
       ></iframe>
     </div>
   );

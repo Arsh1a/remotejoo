@@ -10,9 +10,12 @@ interface Props {
 }
 
 const Metadata = ({ title, description, image, url, robot }: Props) => {
-  const imageMeta =
-    `${process.env.NEXT_PUBLIC_ASSETS_URI}/${image}` ??
-    `${process.env.NEXT_PUBLIC_DOMAIN}/images/logo.png`;
+  const imageMeta = image
+    ? `${process.env.NEXT_PUBLIC_ASSETS_URI}/${image}`
+    : `${process.env.NEXT_PUBLIC_DOMAIN}/images/logo.png`;
+
+  console.log("imageMeta", imageMeta);
+
   return (
     <Head>
       <title>{`${title} | ریموتجو`}</title>
