@@ -48,7 +48,7 @@ const CompanyImageUpload = ({
 
   useEffect(() => {
     if (loadedCompanyImage) {
-      setDataUri(`${process.env.NEXT_PUBLIC_IMAGES_URI}/${loadedCompanyImage}`);
+      setDataUri(`${process.env.NEXT_PUBLIC_ASSETS_URI}/${loadedCompanyImage}`);
     }
   }, [loadedCompanyImage]);
 

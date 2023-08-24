@@ -5,7 +5,7 @@ export const navbarLinks = [
   },
   {
     label: "جستوجو مشاغل",
-    url: "/jobs",
+    url: "/jobs?",
   },
   {
     label: "تماس با ما",
@@ -35,7 +35,7 @@ export const authDropDownLinks = [
 export const footerLinks = [
   {
     label: "فرصت های شغلی دورکاری",
-    url: "/jobs",
+    url: "/jobs?",
   },
   {
     label: "قوانین و مقررات",

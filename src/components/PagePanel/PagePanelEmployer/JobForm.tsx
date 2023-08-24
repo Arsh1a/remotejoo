@@ -183,7 +183,7 @@ const JobForm = ({
           )}
           {...register("description", {
             required: true,
-            minLength: 100,
+            minLength: 1000,
             maxLength: 5000,
           })}
           name="description"

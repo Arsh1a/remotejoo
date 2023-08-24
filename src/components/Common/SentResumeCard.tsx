@@ -17,7 +17,7 @@ const SentResumeCard = ({ data }: Props) => {
     <div className="flex gap-5 rounded-primary p-6 w-full bg-white">
       <Link href={jobPageUrl}>
         <CompanyLogo
-          companyLogo={`${process.env.NEXT_PUBLIC_IMAGES_URI}/${data.company.logo}`}
+          companyLogo={`${process.env.NEXT_PUBLIC_ASSETS_URI}/${data.company.logo}`}
           companyName={data.company.name}
           width={60}
           height={60}
@@ -40,9 +40,9 @@ const SentResumeCard = ({ data }: Props) => {
           {sentResumeStatusLabels[data.status].label}
         </span>
       </div>
-      <Button className="self-center mr-auto" variant="primary">
+      {/* <Button className="self-center mr-auto" variant="primary">
         مشاهده جزئیات
-      </Button>
+      </Button> */}
     </div>
   );
 };

@@ -52,7 +52,7 @@ const ResumeUpload = ({
 
   useEffect(() => {
     if (loadedResume) {
-      setDataUri(`${process.env.NEXT_PUBLIC_IMAGES_URI}/${loadedResume}`);
+      setDataUri(`${process.env.NEXT_PUBLIC_ASSETS_URI}/${loadedResume}`);
     }
   }, [loadedResume]);
 
@@ -150,15 +150,22 @@ const ResumeUpload = ({
         {...rest}
         onChange={handleFileChange}
       />
-      {(loadedResume || passFile) && (
-        <Link
-          href={`/resume/${loadedResume ?? passFile}`}
-          className="text-sm hover:opacity-70 transition"
-          target="_blank"
-          rel="noreferrer"
-        >
-          مشاهده
-        </Link>
+      {!isLoading && (
+        <>
+          {(loadedResume || passFile) && (
+            <Link
+              href={`/resume?file_name=${
+                loadedResume?.replace("resumes/", "") ??
+                passFile.replace("resumes/", "")
+              }`}
+              className="text-sm hover:opacity-70 transition"
+              target="_blank"
+              rel="noreferrer"
+            >
+              مشاهده
+            </Link>
+          )}
+        </>
       )}
       {errorMessage && <InputError message={errorMessage} />}
     </div>

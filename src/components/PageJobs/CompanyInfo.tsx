@@ -13,7 +13,7 @@ const CompanyInfo = ({ data }: Props) => {
   return (
     <div className="flex flex-col gap-2 justify-center items-center bg-main px-4 py-6 h-[350px] text-white rounded-secondary">
       <CompanyLogo
-        companyLogo={`${process.env.NEXT_PUBLIC_IMAGES_URI}/${data.company.logo}`}
+        companyLogo={`${process.env.NEXT_PUBLIC_ASSETS_URI}/${data.company.logo}`}
         companyName={data.company.name}
         height={100}
         width={100}

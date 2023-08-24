@@ -1,6 +1,6 @@
 import { navbarLinks } from "@/constants/links.constants";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MdClose, MdMenu } from "react-icons/md";
 import Logo from "../Common/Logo";
 import Button from "../Common/Button";
@@ -28,7 +28,7 @@ const NavbarMobileMenu = ({ setIsMenuOpen, isMenuOpen, data }: Props) => {
 
   return (
     <div
-      className={`absolute min-h-screen w-screen overflow-hidden bg-slate-600 bg-opacity-90 transition-all z-40${
+      className={`absolute min-h-screen w-full overflow-hidden bg-slate-600 bg-opacity-90 transition-all z-40${
         isMenuOpen ? "" : " invisible bg-opacity-0"
       }`}
     >

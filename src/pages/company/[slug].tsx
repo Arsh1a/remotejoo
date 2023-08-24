@@ -29,7 +29,7 @@ export default function CompanyPage({
       <section className="bg-white flex flex-col gap-10 rounded-primary p-6">
         <div className="flex gap-5">
           <CompanyLogo
-            companyLogo={`${process.env.NEXT_PUBLIC_IMAGES_URI}/${companyData.logo}`}
+            companyLogo={`${process.env.NEXT_PUBLIC_ASSETS_URI}/${companyData.logo}`}
             companyName={companyData.name}
             height={80}
             width={80}

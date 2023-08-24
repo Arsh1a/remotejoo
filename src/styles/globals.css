@@ -13,7 +13,6 @@
 html,
 body {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 .tiptap_output > * {

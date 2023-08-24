@@ -19,7 +19,7 @@ const LatestJobs = ({ data }: Props) => {
         {data && data.map((job, i) => <JobCardAlternative key={i} {...job} />)}
       </div>
       <div className="flex items-center justify-center">
-        <Link href="/jobs" className="mt-4 md:mt-8">
+        <Link href="/jobs?" className="mt-4 md:mt-8">
           <Button variant="primary">مشاهده همه</Button>
         </Link>
       </div>

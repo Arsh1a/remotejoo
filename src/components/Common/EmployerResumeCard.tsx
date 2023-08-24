@@ -36,6 +36,7 @@ const EmployerResumeCard = ({ data }: Props) => {
       <div className="flex flex-col">
         <div>نام: {data.name}</div>
         <div>شماره تلفن: {data.phoneNumber}</div>
+        <div>ایمیل: {data.email}</div>
         <div>
           تاریخ ارسال درخواست: {convertISODateToPersianDate(data.createdAt)}
         </div>
@@ -47,7 +48,7 @@ const EmployerResumeCard = ({ data }: Props) => {
       <div className="flex flex-col mr-auto gap-2">
         <Link
           className="self-center w-full"
-          href={`/resume/${data.resumePdf}`}
+          href={`/resume?file_name=${data.resumePdf.replace("resumes/", "")}`}
           target="_blank"
         >
           <Button

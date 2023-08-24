@@ -25,6 +25,7 @@ export type ResumeType = {
   description?: string;
   userId: string;
   jobId: string;
+  email: string;
 };
 
 export type SentResumeType = ResumeType & {

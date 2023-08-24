@@ -29,7 +29,7 @@ const JobCardAlternative = ({
     : "";
 
   const companyLogo = isPublishedInternally
-    ? `${process.env.NEXT_PUBLIC_IMAGES_URI}/${rest.company.logo}`
+    ? `${process.env.NEXT_PUBLIC_ASSETS_URI}/${rest.company.logo}`
     : rest.companyLogo;
   const companyName = isPublishedInternally
     ? rest.company.name

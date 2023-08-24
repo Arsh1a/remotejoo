@@ -54,7 +54,7 @@ const FileUpload = ({
 
   useEffect(() => {
     if (loadedFile) {
-      setDataUri(`${process.env.NEXT_PUBLIC_IMAGES_URI}/${loadedFile}`);
+      setDataUri(`${process.env.NEXT_PUBLIC_ASSETS_URI}/${loadedFile}`);
     }
   }, [loadedFile]);
 
