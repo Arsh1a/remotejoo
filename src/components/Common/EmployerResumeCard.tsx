@@ -48,7 +48,7 @@ const EmployerResumeCard = ({ data }: Props) => {
       <div className="flex flex-col mr-auto gap-2">
         <Link
           className="self-center w-full"
-          href={`/resume?file_name=${data.resumePdf.replace("resumes/", "")}`}
+          href={`${process.env.NEXT_PUBLIC_ASSETS_URI}/${data.resumePdf}`}
           target="_blank"
         >
           <Button

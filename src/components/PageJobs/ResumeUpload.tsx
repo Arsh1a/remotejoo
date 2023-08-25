@@ -154,9 +154,8 @@ const ResumeUpload = ({
         <>
           {(loadedResume || passFile) && (
             <Link
-              href={`/resume?file_name=${
-                loadedResume?.replace("resumes/", "") ??
-                passFile.replace("resumes/", "")
+              href={`${process.env.NEXT_PUBLIC_ASSETS_URI}/${
+                loadedResume ?? passFile
               }`}
               className="text-sm hover:opacity-70 transition"
               target="_blank"
