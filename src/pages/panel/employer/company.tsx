@@ -233,7 +233,11 @@ export default function CreateCompanyPage() {
         </div>
         <div className="flex justify-end gap-2">
           {loadedCompanyData && (
-            <Link href={`/company/${loadedCompanyData?.slug}`}>
+            <Link
+              target="_blank"
+              rel="noreferrer"
+              href={`/company/${loadedCompanyData?.slug}`}
+            >
               <Button variant="black">مشاهده پروفایل شرکت</Button>
             </Link>
           )}

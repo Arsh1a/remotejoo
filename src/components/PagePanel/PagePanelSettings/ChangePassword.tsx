@@ -8,6 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import Button from "@/components/Common/Button";
 import useAppMutation from "@/hooks/useAppMutation";
+import InputError from "@/components/Common/InputError";
 
 interface Props {}
 
@@ -77,6 +78,9 @@ const ChangePassword = ({}: Props) => {
             },
           })}
         />
+        {errors.repeatPassword?.type === "validate" && (
+          <InputError message={"تکرار رمز عبور مطابقت ندارد."} />
+        )}
         <Button type="submit">تغییر رمز عبور</Button>
       </form>
     </SettingsCard>
