@@ -1,5 +1,4 @@
 import { JobType, InternalJobType, CompanyType } from "@/types";
-import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 import fs from "fs";

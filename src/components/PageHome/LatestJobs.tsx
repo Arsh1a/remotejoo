@@ -2,7 +2,6 @@ import { JobType } from "@/types";
 import Container from "../Common/Container";
 import Button from "../Common/Button";
 import Link from "next/link";
-import JobCard from "../Common/JobCard";
 import JobCardAlternative from "../Common/JobCardAlternative";
 
 interface Props {

@@ -1,5 +1,4 @@
 import Button from "@/components/Common/Button";
-import Card from "@/components/Common/Card";
 import Container from "@/components/Common/Container";
 import DataNotFound from "@/components/Common/DataNotFound";
 import Metadata from "@/components/Common/Metadata";
