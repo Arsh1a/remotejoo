@@ -10,11 +10,9 @@ import { useRouter } from "next/router";
 import AuthDropDown from "./AuthDropDown";
 import NavbarMobileMenu from "./NavbarMobileMenu";
 
-interface Props {
-  data: UserType | null | false;
-}
+interface Props {}
 
-const Navbar = ({ data }: Props) => {
+const Navbar = ({}: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
@@ -24,11 +22,7 @@ const Navbar = ({ data }: Props) => {
         router.pathname === "/" ? " -mb-24" : ""
       }`}
     >
-      <NavbarMobileMenu
-        data={data}
-        setIsMenuOpen={setIsMenuOpen}
-        isMenuOpen={isMenuOpen}
-      />
+      <NavbarMobileMenu setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
       <Container className="flex relative">
         <nav className="flex gap-4 justify-between z-[11] relative items-center bg-base-100 bg-transparent w-full">
           <div className="flex gap-5 md:gap-10 items-center font-semibold flex-1">
@@ -52,30 +46,6 @@ const Navbar = ({ data }: Props) => {
               ))}
             </ul>
           </div>
-          {data !== false ? (
-            data ? (
-              <AuthDropDown data={data} />
-            ) : (
-              <div className="gap-4 sm:mr-auto items-center justify-center font-semibold hidden sm:flex">
-                <Link
-                  className="hover:opacity-70 transition"
-                  href="/auth/login"
-                >
-                  ورود
-                </Link>
-                <Link
-                  href="/auth/signup"
-                  className="flex justify-center items-center"
-                >
-                  <Button className="" variant="white">
-                    عضویت
-                  </Button>
-                </Link>
-              </div>
-            )
-          ) : (
-            <></>
-          )}
         </nav>
       </Container>
     </header>

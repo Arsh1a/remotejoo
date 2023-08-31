@@ -22,18 +22,21 @@ const JobCardAlternative = ({
   ...rest
 }: Props) => {
   const cardColor = categories[rest.category].color;
-  const isPublishedInternally = rest.origin === "remotejoo";
+  // const isPublishedInternally = rest.origin === "remotejoo";
+  const isPublishedInternally = false;
   const category = categories[rest.category].label;
-  const jobURL = isPublishedInternally
-    ? `/jobs/${rest.slug}/${convertSpacesToHyphens(rest.title)}`
-    : "";
+  // const jobURL = isPublishedInternally
+  //   ? `/jobs/${rest.slug}/${convertSpacesToHyphens(rest.title)}`
+  //   : "";
 
-  const companyLogo = isPublishedInternally
-    ? `${process.env.NEXT_PUBLIC_ASSETS_URI}/${rest.company.logo}`
-    : rest.companyLogo;
-  const companyName = isPublishedInternally
-    ? rest.company.name
-    : rest.companyName;
+  // const companyLogo = isPublishedInternally
+  //   ? `${process.env.NEXT_PUBLIC_ASSETS_URI}/${rest.company.logo}`
+  //   : rest.companyLogo;
+  const companyLogo = rest.companyLogo;
+  // const companyName = isPublishedInternally
+  //   ? rest.company.name
+  //   : rest.companyName;
+  const companyName = rest.companyName;
 
   return (
     <article className="bg-white rounded-primary p-6 relative flex flex-col gap-4 justify-center">
@@ -58,7 +61,7 @@ const JobCardAlternative = ({
           />
           <div className="flex flex-col gap-1">
             <p>{companyName}</p>
-            {isPublishedInternally ? (
+            {/* {isPublishedInternally ? (
               <Link
                 title={rest.title}
                 className="font-bold text-xl word-break hover:opacity-70 transition text-primary"
@@ -78,7 +81,16 @@ const JobCardAlternative = ({
               >
                 {truncateString(rest.title, 45)}
               </a>
-            )}
+            )} */}
+            <a
+              title={rest.title}
+              href={rest.link}
+              target="_blank"
+              rel="noreferrer"
+              className="font-bold word-break text-xl hover:opacity-70 transition"
+            >
+              {truncateString(rest.title, 45)}
+            </a>
             <div className="flex items-center gap-4 flex-wrap">
               <div className="rounded-full px-2 border self-start border-neutral-500 text-neutral-500">
                 <span className="text-sm">{category}</span>
@@ -93,7 +105,7 @@ const JobCardAlternative = ({
         </div>
         <div className="flex flex-col justify-between gap-2 relative mt-5">
           <div className="mr-auto mt-auto flex flex-col items-end gap-2">
-            {isPublishedInternally ? (
+            {/* {isPublishedInternally ? (
               <Link href={jobURL} target="_blank" rel="noreferrer">
                 <Button variant="primary">مشاهده</Button>
               </Link>
@@ -101,7 +113,10 @@ const JobCardAlternative = ({
               <a href={rest.link} target="_blank" rel="noreferrer">
                 <Button variant={buttonVariant}>مشاهده</Button>
               </a>
-            )}
+            )} */}
+            <a href={rest.link} target="_blank" rel="noreferrer">
+              <Button variant={buttonVariant}>مشاهده</Button>
+            </a>
           </div>
         </div>
       </div>

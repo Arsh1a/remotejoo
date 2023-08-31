@@ -14,25 +14,6 @@ interface Props {
 }
 
 const Layout = ({ children }: Props) => {
-  const [userData, setUserData] = useState<UserType | null | false>(false);
-
-  const router = useRouter();
-  const contextReset = useAuthStore((state) => state.contextReset);
-  const contextLogin = useAuthStore((state) => state.contextLogin);
-
-  const { isLoading } = useQuery({
-    queryKey: ["auth"],
-    queryFn: () => getData<UserType>("/auth/me"),
-    onSuccess: (res) => {
-      contextLogin();
-      setUserData(res.data);
-    },
-    onError: () => {
-      contextReset();
-      setUserData(null);
-    },
-  });
-
   //If website is down show these stuff
   if (process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "1") {
     return (
@@ -40,19 +21,11 @@ const Layout = ({ children }: Props) => {
     );
   }
 
-  if (router.asPath.includes("/resume")) {
-    return <>{children}</>;
-  }
-
   return (
     <div className="font-sans min-h-screen relative flex flex-col">
-      {!router.pathname.includes("/auth") && <Navbar data={userData} />}
-      {router.pathname.includes("/panel") ? (
-        <PanelLayout>{children}</PanelLayout>
-      ) : (
-        <div className="relative z-10">{children}</div>
-      )}
-      {!router.pathname.includes("/auth") && <Footer />}
+      <Navbar />
+      <div className="relative z-10">{children}</div>
+      <Footer />
     </div>
   );
 };

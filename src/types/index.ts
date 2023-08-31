@@ -43,7 +43,7 @@ export type JobType = {
   passedDays: number;
   category: CategoryType;
   salary?: number;
-} & (InternalJobType | ExternalJobType);
+} & ExternalJobType;
 
 export type InternalJobType = {
   origin: InternalOriginType;

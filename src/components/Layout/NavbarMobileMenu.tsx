@@ -11,10 +11,9 @@ import AuthDropDown from "./AuthDropDown";
 interface Props {
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isMenuOpen: boolean;
-  data: UserType | null | false;
 }
 
-const NavbarMobileMenu = ({ setIsMenuOpen, isMenuOpen, data }: Props) => {
+const NavbarMobileMenu = ({ setIsMenuOpen, isMenuOpen }: Props) => {
   const ref = useOnClickOutside<HTMLDivElement>(() => setIsMenuOpen(false));
 
   useEffect(() => {
@@ -57,66 +56,6 @@ const NavbarMobileMenu = ({ setIsMenuOpen, isMenuOpen, data }: Props) => {
               </Link>
             </li>
           ))}
-          {data !== false ? (
-            data ? (
-              <>
-                <li className="text-black border-b p-4">
-                  <Link
-                    className="hover:opacity-70 transition"
-                    onClick={() => setIsMenuOpen(false)}
-                    href="/panel/emloyee"
-                  >
-                    بخش کارجویان
-                  </Link>
-                </li>
-                <li className="text-black border-b p-4">
-                  <Link
-                    className="hover:opacity-70 transition"
-                    onClick={() => setIsMenuOpen(false)}
-                    href="/panel/emloyer"
-                  >
-                    بخش کارفرمایان
-                  </Link>
-                </li>
-                <li className="text-black border-b p-4">
-                  <Link
-                    className="hover:opacity-70 transition"
-                    onClick={() => setIsMenuOpen(false)}
-                    href="/panel/settings"
-                  >
-                    تنظیمات
-                  </Link>
-                </li>
-              </>
-            ) : (
-              <>
-                <li className="text-black p-4 pb-0">
-                  <Link
-                    onClick={() => setIsMenuOpen(false)}
-                    className="transition flex justify-center items-center"
-                    href="/auth/login"
-                  >
-                    <Button className="text-lg w-full" variant="black">
-                      ورود
-                    </Button>
-                  </Link>
-                </li>
-                <li className="text-black p-4">
-                  <Link
-                    onClick={() => setIsMenuOpen(false)}
-                    href="/auth/signup"
-                    className="flex justify-center items-center"
-                  >
-                    <Button className="text-lg w-full" variant="primary">
-                      عضویت
-                    </Button>
-                  </Link>
-                </li>
-              </>
-            )
-          ) : (
-            <></>
-          )}
         </ul>
       </nav>
     </div>

@@ -119,7 +119,6 @@ const JobsSearchWrapper = ({ data, searchObject }: Props) => {
         />
         <Container className="flex flex-col md:flex-row gap-6 items-start relative">
           <aside className="flex flex-col gap-6 w-full md:w-[unset]">
-            <EmployerCTA />
             <AltJobsFilter
               handleFilterChange={handleFilterChange}
               filters={filters}
