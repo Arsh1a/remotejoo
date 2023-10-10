@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import Container from "../Common/Container";
-import Button from "../Common/Button";
 import Link from "next/link";
 import { MdMenu, MdPerson, MdSearch } from "react-icons/md";
-import { UserType } from "@/types";
 import Logo from "../Common/Logo";
 import { navbarLinks } from "@/constants/links.constants";
 import { useRouter } from "next/router";
-import AuthDropDown from "./AuthDropDown";
 import NavbarMobileMenu from "./NavbarMobileMenu";
 
 interface Props {}

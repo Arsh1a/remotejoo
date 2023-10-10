@@ -16,7 +16,7 @@ const HomeHero = ({}: Props) => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/jobs?text=${search}`);
+    router.push(`/jobs?${search ? `text=${search}` : ""}`);
   };
 
   return (

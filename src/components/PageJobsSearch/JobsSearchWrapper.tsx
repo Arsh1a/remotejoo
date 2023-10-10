@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import Container from "../Common/Container";
 import { FilterType, CategoryType, OriginType, JobFetchType } from "@/types";
 import { filterObjectToQueryString } from "@/utils/api";
-import { data } from "autoprefixer";
 import { useRouter } from "next/router";
 import AltJobsFilter from "./AltJobsFilter";
-import EmployerCTA from "./EmployerCTA";
 import JobTopFilter from "./JobTopFilter";
 import JobsAppliedFiltersCategories from "./JobsAppliedFiltersCategories";
 import JobsCount from "./JobsCount";
@@ -66,7 +64,6 @@ const JobsSearchWrapper = ({ data, searchObject }: Props) => {
     if (CategoryPageIdentifier) {
       //Exclude categories from appering in queries
       const { categories, ...queries } = filters;
-
       router.push(
         `/jobs/category/${filters.categories![0]}?${filterObjectToQueryString(
           queries

@@ -1,12 +1,8 @@
 import { navbarLinks } from "@/constants/links.constants";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { MdClose, MdMenu } from "react-icons/md";
 import Logo from "../Common/Logo";
-import Button from "../Common/Button";
 import useOnClickOutside from "@/hooks/useOnClickOutside";
-import { UserType } from "@/types";
-import AuthDropDown from "./AuthDropDown";
 
 interface Props {
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;

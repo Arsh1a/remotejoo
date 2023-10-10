@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   redirects() {
     return [
       process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "1"

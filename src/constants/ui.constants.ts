@@ -38,7 +38,6 @@ export const categories = {
 };
 
 export const origins = {
-  remotejoo: { label: "ریموتجو", color: "" },
   jobinja: { label: "جاب اینجا", color: "#1DD3AF" },
   jobvision: { label: "جاب ویژن", color: "#5660F2" },
   "e-estekhdam": { label: "ای استخدام", color: "#7843ba" },

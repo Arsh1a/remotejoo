@@ -3,11 +3,9 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import localFont from "next/font/local";
 import { useRouter } from "next/router";
-import useAuthStore from "@/context/useAuthStore";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getData } from "@/utils/api";
 import { UserType } from "@/types";
-import PanelLayout from "./PanelLayout";
 
 interface Props {
   children: React.ReactNode;
