@@ -3,4 +3,7 @@
     <sitemap>
         <loc>https://remotejoo.ir/sitemap_main.xml</loc>
     </sitemap>
+    <sitemap>
+        <loc>https://remotejoo.ir/sitemap_categories.xml</loc>
+    </sitemap>
 </sitemapindex>
