@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import Image from "next/image";
 import { RiBuilding4Fill } from "react-icons/ri";
@@ -30,7 +31,7 @@ const CompanyLogo = ({ companyLogo, companyName, width, height }: Props) => {
 
   return (
     <div>
-      <Image
+      <img
         src={
           imageExist
             ? `${companyLogo}?${timeStamp}`
@@ -39,7 +40,6 @@ const CompanyLogo = ({ companyLogo, companyName, width, height }: Props) => {
         alt={companyName}
         height={height}
         width={width}
-        unoptimized={imageExist ? false : true}
         className={`rounded-full bg-white max-w-fit`}
         onError={handleImageError}
       />
