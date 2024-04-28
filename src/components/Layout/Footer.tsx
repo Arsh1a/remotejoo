@@ -4,6 +4,7 @@ import Logo from "../Common/Logo";
 import Link from "next/link";
 import { contactInfo } from "@/constants/info.constants";
 import { footerLinks } from "@/constants/links.constants";
+import { BsGithub } from "react-icons/bs";
 
 interface Props {}
 
@@ -39,6 +40,14 @@ const Footer = ({}: Props) => {
             {contactInfo.email}
           </a>
         </div>
+        <a
+          href="https://github.com/arsh1a/remotejoo"
+          target="_blank"
+          rel="noreferrer"
+          className="transition hover:opacity-70 self-start"
+        >
+          <BsGithub className="text-2xl" />
+        </a>
       </Container>
     </footer>
   );

@@ -6,6 +6,7 @@ import Logo from "../Common/Logo";
 import { navbarLinks } from "@/constants/links.constants";
 import { useRouter } from "next/router";
 import NavbarMobileMenu from "./NavbarMobileMenu";
+import { BsGithub } from "react-icons/bs";
 
 interface Props {}
 
@@ -43,6 +44,14 @@ const Navbar = ({}: Props) => {
               ))}
             </ul>
           </div>
+          <a
+            href="https://github.com/arsh1a/remotejoo"
+            target="_blank"
+            rel="noreferrer"
+            className="transition hover:opacity-70"
+          >
+            <BsGithub className="text-2xl" />
+          </a>
         </nav>
       </Container>
     </header>
