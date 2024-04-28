@@ -12,13 +12,6 @@ interface Props {
 }
 
 const Layout = ({ children }: Props) => {
-  //If website is down show these stuff
-  if (process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "1") {
-    return (
-      <div className={`font-sans flex flex-col min-h-screen`}>{children}</div>
-    );
-  }
-
   return (
     <div className="font-sans min-h-screen relative flex flex-col">
       <Navbar />
