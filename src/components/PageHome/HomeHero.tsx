@@ -23,13 +23,13 @@ const HomeHero = ({}: Props) => {
     <main className="text-center hero-bg py-20 pt-24 text-white relative flex items-center justify-center">
       {/* <GradientBackground /> */}
       <Container className="flex flex-col justify-center items-center text-center relative overflow-hidden">
-        <h1 className="text-3xl md:text-5xl lg:text-7xl font-semibold">
+        <h2 className="text-3xl md:text-5xl lg:text-7xl font-semibold">
           به راحتی کار{" "}
           <strong className="font-extrabold text-transparent text-5xl md:text-8xl bg-clip-text bg-white">
             ریموت
           </strong>{" "}
           پیدا کن!
-        </h1>
+        </h2>
         <p className="text-xl my-5 md:my-10">
           با{" "}
           <strong className="text-transparent tracking-tight text-3xl bg-clip-text bg-main-orange">
