@@ -50,7 +50,7 @@ export default function ContactPage() {
         description={
           "با ریموتجو، فرصت‌های شغلی دورکاری در ایران را در دستان خود داشته باش و به راحتی کار ریموت پیدا کن."
         }
-        url={"/contact"}
+        url={"contact"}
       />
       <Container>
         <PanelCard title="تماس با ما" isLoading={isLoading}>

@@ -28,7 +28,7 @@ const Metadata = ({ title, description, image, url, robot }: Props) => {
       <meta name="twitter:image" content={imageMeta} />
 
       <meta name="robots" content={robot ?? "all"} />
-      <link rel="canonical" href={`https://remotejoo.ir/${url}`} />
+      <link rel="canonical" href={`https://www.remotejoo.ir/${url}`} />
     </Head>
   );
 };

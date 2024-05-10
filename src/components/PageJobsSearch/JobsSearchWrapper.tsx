@@ -106,7 +106,7 @@ const JobsSearchWrapper = ({ data, searchObject }: Props) => {
         description={
           "آگهی‌های شغلی استخدام برنامه نویس  - SEO را در Quera ببینید و شغل رویایی خود را پیدا کنید."
         }
-        url={"search"}
+        url={"jobs"}
         title={`${metadataTitle}`}
       />
       <div className="relative">
